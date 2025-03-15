@@ -4,7 +4,7 @@ import {
     Button,
     Container,
     Heading,
-    VStack,
+    VStack
     HStack,
     Text,
     IconButton,
