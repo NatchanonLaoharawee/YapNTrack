@@ -44,15 +44,13 @@ export default function Home() {
                 onChange={(e) => {setPassword(password => e.target.value)}}
             />
             <div className="w-full flex justify-center">
-              <Link href="/routing/write">
-                <button 
-                  className="bg-yellow-200 hover:bg-yellow-300 rounded-2xl border-2 px-4 py-1 flex justify-end"
-                  onClick={() => {router.push({
-                    pathname: "/routing/write",
-                    query: {userName}
-                  })}}
-                >sign up</button>
-              </Link>
+              <button 
+                className="bg-yellow-200 hover:bg-yellow-300 rounded-2xl border-2 px-4 py-1 flex justify-end"
+                onClick={() => {router.push({
+                  pathname: "/routing/write",
+                  query: {userName}
+                })}}
+              >sign up</button>
             </div>
         </div> 
     </div>
