@@ -40,13 +40,13 @@ const PastEntries: React.FC = () => {
 
     return (
         <Container maxW="xl" py={8}>
-            <VStack spacing={6 as any} align="stretch">
-                {/* Heading */}
+            <VStack spacing={6} align="stretch">
+                {/* 🔹 Heading */}
                 <Heading size="md">Past Entries</Heading>
 
-                {/* Entries List (Left Sidebar) */}
+                {/* 🔹 Entries List (Left Sidebar) */}
                 <HStack align="start" spacing={6}>
-                    <VStack spacing={2} align="stretch" bg="pink.300" p={4} borderRadius="md">
+                    <VStack spacing={2} align="stretch" bg="pink.200" p={4} borderRadius="md">
                         {entries.map((entry, index) => (
                             <Button
                                 key={index}
@@ -60,13 +60,30 @@ const PastEntries: React.FC = () => {
                         ))}
                     </VStack>
 
-                    {/* Notepad Section */}
-                    <Box flex="1" p={6} bg="beige" borderRadius="md" boxShadow="md" w="100%" minH="300px">
-                        <Text>{entries[currentPage]?.content || "No content available."}</Text>
+                    {/* 🔹 Notepad Section */}
+                    <Box
+                        flex="1"
+                        p={6}
+                        bg="#FFE5B4" /* Beige background */
+                        borderRadius="md"
+                        boxShadow="md"
+                        w="100%"
+                        minH="300px"
+
+                    >
+                        {/* 🔹 Entry Date Header */}
+                        <Text fontSize="lg" fontWeight="bold" mb={4} textAlign="center" borderBottom="2px solid black" pb={2}>
+                            {entries[currentPage]?.date || "No Date Available"}
+                        </Text>
+
+                        {/* 🔹 Entry Content */}
+                        <Text fontSize="18px">
+                            {entries[currentPage]?.content || "No content available."}
+                        </Text>
                     </Box>
                 </HStack>
 
-                {/* Pagination Buttons */}
+                {/* 🔹 Pagination Buttons */}
                 <HStack justify="center">
                     <IconButton
                         aria-label="Previous Entry"
