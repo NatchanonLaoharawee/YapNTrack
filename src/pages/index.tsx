@@ -5,18 +5,18 @@ import React from "react";
 // import Login from "./Login";
 import { useState } from "react";
 import Link from "next/link";
-
+import { useRouter } from 'next/router';
 
 export default function Home() {
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+  const router = useRouter();
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-pink-200">
       <nav className="flex justify-around w-full p-4 fixed top-0 left-0 z-10 bg-pink-200">
-        <Link href="/routing/write">
-          <button className="bg-red-300 hover:bg-pink-400 rounded-full px-4 py-2 ">WRITE</button>
-        </Link>
+        <button className="bg-red-300 hover:bg-pink-400 rounded-full px-4 py-2 ">WRITE</button>
         <button className="bg-red-300 hover:bg-pink-400 rounded-full px-4 py-2">PAST ENTRIES</button>
         <button className="bg-red-300 hover:bg-pink-400 rounded-full px-4 py-2">CALENDAR</button>
         <button className="bg-purple-300 rounded-full px-4 py-2">LOGIN</button>
@@ -44,9 +44,19 @@ export default function Home() {
                 onChange={(e) => {setPassword(password => e.target.value)}}
             />
             <div className="w-full flex justify-center">
-                <button className="bg-yellow-200 hover:bg-yellow-300 rounded-2xl border-2 px-4 py-1 flex justify-end">sign up</button>
+              <Link href="/routing/write">
+                <button 
+                  className="bg-yellow-200 hover:bg-yellow-300 rounded-2xl border-2 px-4 py-1 flex justify-end"
+                  onClick={() => {router.push({
+                    pathname: "/routing/write",
+                    query: {userName}
+                  })}}
+                >sign up</button>
+              </Link>
             </div>
         </div> 
     </div>
+
+    
   );
 };
