@@ -91,7 +91,7 @@ const Calendar: React.FC = () => {
     };
 
     return (
-        <Container maxW="5000px" py={8} bg="#FFD6E0" minH="500vh" centerContent>
+        <Container maxW="3xl" py={8} bg="#FFD6E0" minH="500vh" centerContent>
             {/* 🔹 Navbar */}
             <nav
                 style={{

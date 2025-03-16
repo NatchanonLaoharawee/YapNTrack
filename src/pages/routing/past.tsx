@@ -135,16 +135,18 @@ const RoutingPastEntries: React.FC = () => {
                 <HStack justify="center" style={{ gap: "15px" }}> {/* ✅ Applied `gap` */}
                     <IconButton
                         aria-label="Previous Entry"
-                        icon={<ArrowLeftIcon />}
                         onClick={() => handlePageChange("prev")}
                         isDisabled={currentPage === 0}
-                    />
+                    >
+                        <ArrowLeftIcon />
+                    </IconButton>
                     <IconButton
                         aria-label="Next Entry"
-                        icon={<ArrowRightIcon />}
                         onClick={() => handlePageChange("next")}
                         isDisabled={currentPage === entries.length - 1}
-                    />
+                    >
+                        <ArrowRightIcon />
+                    </IconButton>
                 </HStack>
             </VStack>
         </Container>
