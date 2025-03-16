@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { Box, Button, Container, Heading, Textarea, VStack, HStack, Text } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 const IndexPage: React.FC = () => {
+
+    const router = useRouter();
+    const { userName } = router.query;
+
     const [pages, setPages] = useState<string[]>([""]); // Stores pages
     const [currentPage, setCurrentPage] = useState(0); // Current page index
 
@@ -40,10 +45,10 @@ const IndexPage: React.FC = () => {
                 }}
             >
                 {[
-                    { text: "WRITE", href: "/write" },
-                    { text: "PAST ENTRIES", href: "/past" },
-                    { text: "CALENDAR", href: "/calendar" },
-                    { text: "LOGIN", href: "/login" },
+                    { text: "WRITE", href: "/routing/write" },
+                    { text: "PAST ENTRIES", href: "/routing/past" },
+                    { text: "CALENDAR", href: "/routing/calendar" },
+                    { text: "LOGIN", href: "/" },
                 ].map((item) => (
                     <Button
                         key={item.text}
@@ -66,7 +71,7 @@ const IndexPage: React.FC = () => {
 
             {/* 🔹 Greeting Section */}
             <Box alignSelf="start" mt={5} mb={3}>
-                <Heading fontSize="lg">Hello Mala!</Heading>
+                <Heading fontSize="lg">Hello {userName}!</Heading>
                 <Text fontSize="lg">Welcome Back :)</Text>
             </Box>
 

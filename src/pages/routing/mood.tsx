@@ -20,7 +20,7 @@ const RoutingMood: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(false); // Set false since no fetch
 
     return (
-        <Container maxW="2xl" py={8} bg="#FFD6E0" minH="100vh" centerContent>
+        <Container maxW="3xl" py={8} bg="#FFD6E0" minH="100vh" centerContent>
             {/* 🔹 Navbar */}
             <nav
                 style={{

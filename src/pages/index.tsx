@@ -84,46 +84,48 @@ export default function Home() {
     const router = useRouter();
 
     return (
-        <Container maxW="2xl" py={8} bg="#FFD6E0" minH="100vh" centerContent>
+        <Container maxW="3xl" py={8} bg="#FFD6E0" minH="100vh" centerContent>
 
             {/* 🔹 Navbar */}
-            <nav
-                style={{
-                    padding: "10px",
-                    backgroundColor: "#f8d7da",
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: "20px",
-                    flexWrap: "wrap",
-                }}
-            >
-                {[
-                    { text: "WRITE", href: "/routing/write", bgColor: "#f48c8c" },
-                    { text: "PAST ENTRIES", href: "/routing/past", bgColor: "#f48c8c" },
-                    { text: "CALENDAR", href: "/routing/calendar", bgColor: "#f48c8c" },
-                    { text: "LOGIN", href: "/", bgColor: "#e6d3e6" },
-                ].map((item) => (
-                    <Button
-                        key={item.text}
-                        style={{
-                            padding: "10px 20px",
-                            backgroundColor: item.bgColor,
-                            color: "black",
-                            border: "3px solid black",
-                            borderRadius: "25px",
-                            fontWeight: "bold",
-                            fontSize: "16px",
-                            textAlign: "center",
-                            minWidth: "120px",
-                        }}
+            <HStack align="stretch">
+              <nav
+                  style={{
+                      padding: "10px",
+                      backgroundColor: "#f8d7da",
+                      display: "flex",
+                      justifyContent: "center",
+                      gap: "20px",
+                      flexWrap: "wrap",
+                  }}
+              >
+                  {[
+                      { text: "WRITE", href: "/routing/write", bgColor: "#f48c8c" },
+                      { text: "PAST ENTRIES", href: "/routing/past", bgColor: "#f48c8c" },
+                      { text: "CALENDAR", href: "/routing/calendar", bgColor: "#f48c8c" },
+                      { text: "LOGIN", href: "/", bgColor: "#e6d3e6" },
+                  ].map((item) => (
+                      <Button
+                          key={item.text}
+                          style={{
+                              padding: "10px 20px",
+                              backgroundColor: item.bgColor,
+                              color: "black",
+                              border: "3px solid black",
+                              borderRadius: "25px",
+                              fontWeight: "bold",
+                              fontSize: "16px",
+                              textAlign: "center",
+                              minWidth: "120px",
+                          }}
 
-                        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#e75480")}
-                        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = item.bgColor)}
-                    >
-                        {item.text}
-                    </Button>
-                ))}
-            </nav>
+                          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#e75480")}
+                          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = item.bgColor)}
+                      >
+                          {item.text}
+                      </Button>
+                  ))}
+              </nav>
+            </HStack>
 
             {/* 🔹 Login Form */}
             <VStack py={40}>

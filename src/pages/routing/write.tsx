@@ -112,7 +112,7 @@ const RoutingWrite: React.FC = () => {
     };
 
     return (
-        <Container maxW="2xl" py={8} bg="#FFD6E0" minH="100vh" centerContent>
+        <Container maxW="3xl" py={8} bg="#FFD6E0" minH="100vh" centerContent>
             {/* 🔹 Navbar */}
             <nav
                 style={{
