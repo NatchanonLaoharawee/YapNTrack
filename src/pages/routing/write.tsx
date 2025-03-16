@@ -172,6 +172,7 @@ const RoutingWrite: React.FC = () => {
                 mt={2}
                 fontSize="14px"
                 _hover={{ bg: "#A4C77F" }}
+                onClick={() => router.push("/routing/mood")}
             >
                 Mood Calculator
             </Button>
