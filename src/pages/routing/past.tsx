@@ -18,49 +18,27 @@ const RoutingPastEntries: React.FC = () => {
     const [entries, setEntries] = useState<{ date: string; content: string }[]>([]);
     const [currentPage, setCurrentPage] = useState(0);
 
+    // Simulate fetching past entries (replace with API call)
     useEffect(() => {
-        const fetchEntries = async (req, res) => {
-            try {
-                const data = new URLSearchParams();
-                data.append("action", "get_entry");
-                data.append("date", "2025-03-08");
-
-                const response = await fetch("https://cchandrew.com/api/unihack2025/", {
-                    mode: "cors",
-                    method: "POST",
-                    body: data,
-                    headers: {
-                        "Accept": "application/json",
-                    },
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-
-                const jsonData = await response.json();
-                console.log("✅ API Response:", jsonData); // 🔹 Log API response
-
-                // Ensure response has expected format
-                if (Array.isArray(jsonData.entries)) {
-                    setEntries(jsonData.entries);
-                } else {
-                    console.error("⚠️ Unexpected API response format", jsonData);
-                }
-            } catch (error) {
-                console.error("❌ Error fetching entries:", error);
-            }
+        const fetchEntries = async () => {
+            // Simulated past entries
+            const fakeEntries = [
+                { date: "14/03/2025", content: "Entry 1 content..." },
+                { date: "13/03/2025", content: "Entry 2 content..." },
+                { date: "12/03/2025", content: "Entry 3 content..." },
+            ];
+            setEntries(fakeEntries);
         };
 
         fetchEntries();
     }, []);
 
     const handlePageChange = (direction: "prev" | "next") => {
-        setCurrentPage((prev) => {
-            if (direction === "next" && prev < entries.length - 1) return prev + 1;
-            if (direction === "prev" && prev > 0) return prev - 1;
-            return prev;
-        });
+        if (direction === "next" && currentPage < entries.length - 1) {
+            setCurrentPage(currentPage + 1);
+        } else if (direction === "prev" && currentPage > 0) {
+            setCurrentPage(currentPage - 1);
+        }
     };
 
     return (
@@ -85,8 +63,9 @@ const RoutingPastEntries: React.FC = () => {
                         { text: "CALENDAR", href: "/routing/calendar", bgColor: "#f48c8c" },
                         { text: "LOGIN", href: "/", bgColor: "#f48c8c" },
                     ].map((item) => (
-                        <Link key={item.text} href={item.href}>
+                        <Link href={item.href}>
                             <Button
+                                key={item.text}
                                 style={{
                                     padding: "10px 20px",
                                     backgroundColor: item.bgColor,
@@ -98,6 +77,7 @@ const RoutingPastEntries: React.FC = () => {
                                     textAlign: "center",
                                     minWidth: "120px",
                                 }}
+
                                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#e75480")}
                                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = item.bgColor)}
                             >
@@ -109,17 +89,18 @@ const RoutingPastEntries: React.FC = () => {
             </HStack>
 
             {/* 🔹 Past Entries Section */}
-            <VStack align="stretch" style={{ gap: "20px" }}>
+            <VStack align="stretch" style={{ gap: "20px" }}> {/* ✅ Replaced `spacing` with `gap` */}
+                {/* 🔹 Heading */}
                 <Heading size="md">Past Entries</Heading>
 
-                <HStack align="start" style={{ gap: "20px" }}>
-                    {/* 🔹 Entries List (Left Sidebar) */}
+                {/* 🔹 Entries List (Left Sidebar) */}
+                <HStack align="start" style={{ gap: "20px" }}> {/* ✅ Using `gap` here */}
                     <VStack align="stretch" bg="pink.200" p={4} borderRadius="md" style={{ gap: "10px" }}>
                         {entries.map((entry, index) => (
                             <Button
                                 key={index}
                                 w="100%"
-                                colorScheme={index % 4 === 0 ? "yellow" : index % 4 === 1 ? "green" : index % 4 === 2 ? "blue" : "red"}
+                                colorScheme={index % 4 == 0 ? "yellow" : index % 4 == 1 ? "green" : index % 4 == 2 ? "blue" : index % 4 == 3 ? "red" : index % 4 == 0}
                                 borderRadius="full"
                                 onClick={() => setCurrentPage(index)}
                             >
@@ -132,7 +113,7 @@ const RoutingPastEntries: React.FC = () => {
                     <Box
                         flex="1"
                         p={6}
-                        bg="#FFE5B4"
+                        bg="#FFE5B4" /* Beige background */
                         borderRadius="md"
                         boxShadow="md"
                         w="100%"
@@ -151,19 +132,21 @@ const RoutingPastEntries: React.FC = () => {
                 </HStack>
 
                 {/* 🔹 Pagination Buttons */}
-                <HStack justify="center" style={{ gap: "15px" }}>
+                <HStack justify="center" style={{ gap: "15px" }}> {/* ✅ Applied `gap` */}
                     <IconButton
                         aria-label="Previous Entry"
                         onClick={() => handlePageChange("prev")}
-                        isDisabled={currentPage === 0}
-                        icon={<ArrowLeftIcon />}
-                    />
+                        // isDisabled={currentPage === 0}
+                    >
+                        <ArrowLeftIcon isDisabled={currentPage === 0} />
+                    </IconButton>
                     <IconButton
                         aria-label="Next Entry"
                         onClick={() => handlePageChange("next")}
-                        isDisabled={currentPage === entries.length - 1}
-                        icon={<ArrowRightIcon />}
-                    />
+                        // isDisabled={currentPage === entries.length - 1}
+                    >
+                        <ArrowRightIcon isDisabled={currentPage === entries.length - 1}/>
+                    </IconButton>
                 </HStack>
             </VStack>
         </Container>
