@@ -1,6 +1,9 @@
+"use client";
+
 import React, { useState } from "react";
 import { Box, Button, Container, Heading, HStack, Text, Stack } from "@chakra-ui/react";
 import { Radio, RadioGroup } from "@chakra-ui/radio";
+import Link from "next/link";
 
 const moodColors: Record<string, string> = {
     happy: "#FFD700",
@@ -12,30 +15,12 @@ const moodColors: Record<string, string> = {
     surprise: "#FF6347",
 };
 
-
-
-const IndexPage: React.FC = () => {
+const RoutingMood: React.FC = () => {
     const [selectedMood, setSelectedMood] = useState<string>("happy"); // Default mood
     const [loading, setLoading] = useState<boolean>(false); // Set false since no fetch
-    const data = new URLSearchParams();
-    data.append('action', 'get_entry');
-    data.append('date', '2025-03-08');
 
-    fetch("https://cchandrew.com/api/unihack2025/", {
-        mode: 'cors',
-        method: 'POST',
-        body: data,
-        headers: {
-            'Accept': 'application/json',
-        },
-    })
-        //label
-        .then(response => response.json())
-
-        .then(jsonData => console.log(jsonData))
-        .catch(error => console.error('Error:', error));
     return (
-        <Container maxW="xl" py={8} bg="#FFD6E0" minH="100vh" centerContent>
+        <Container maxW="3xl" py={8} bg="#FFD6E0" minH="100vh" centerContent>
             {/* 🔹 Navbar */}
             <nav
                 style={{
@@ -50,27 +35,32 @@ const IndexPage: React.FC = () => {
                 }}
             >
                 {[
-                    { text: "WRITE", href: "/write" },
-                    { text: "PAST ENTRIES", href: "/past" },
-                    { text: "CALENDAR", href: "/calendar" },
-                    { text: "LOGIN", href: "/login" },
+                    { text: "WRITE", href: "/routing/write", bgColor: "#e6d3e6" },
+                    { text: "PAST ENTRIES", href: "/routing/past", bgColor: "#f48c8c" },
+                    { text: "CALENDAR", href: "/routing/calendar", bgColor: "#f48c8c" },
+                    { text: "LOGIN", href: "/", bgColor: "#f48c8c" },
                 ].map((item) => (
-                    <Button
-                        key={item.text}
-                        style={{
-                            padding: "5px 20px",
-                            backgroundColor: item.text === "PAST ENTRIES" ? "#F48C8C" : "#E6D3E6",
-                            color: "black",
-                            border: "3px solid black",
-                            borderRadius: "25px",
-                            fontWeight: "bold",
-                            fontSize: "16px",
-                            textAlign: "center",
-                            minWidth: "120px",
-                        }}
-                    >
-                        {item.text}
-                    </Button>
+                    <Link href={item.href}>
+                        <Button
+                            key={item.text}
+                            style={{
+                                padding: "10px 20px",
+                                backgroundColor: item.bgColor,
+                                color: "black",
+                                border: "3px solid black",
+                                borderRadius: "25px",
+                                fontWeight: "bold",
+                                fontSize: "16px",
+                                textAlign: "center",
+                                minWidth: "120px",
+                            }}
+
+                            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#e75480")}
+                            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = item.bgColor)}
+                        >
+                            {item.text}
+                        </Button>
+                    </Link>
                 ))}
             </nav>
 
@@ -99,7 +89,7 @@ const IndexPage: React.FC = () => {
                             <Box w="10px" h="10px" bg="#FFD700" display="inline-block" borderRadius="full" mr={2} />
                             happy
                         </Radio>
-                        {/* <Radio value="sad">
+                        <Radio value="sad">
                             <Box w="10px" h="10px" bg="#4682B4" display="inline-block" borderRadius="full" mr={2} />
                             sad
                         </Radio>
@@ -126,7 +116,7 @@ const IndexPage: React.FC = () => {
                         <Radio value="surprise">
                             <Box w="10px" h="10px" bg="#FF6347" display="inline-block" borderRadius="full" mr={2} />
                             surprise
-                        </Radio> */}
+                        </Radio>
                     </HStack>
                 </Stack>
             </RadioGroup>
@@ -141,4 +131,4 @@ const IndexPage: React.FC = () => {
     );
 };
 
-export default IndexPage;
+export default RoutingMood;
