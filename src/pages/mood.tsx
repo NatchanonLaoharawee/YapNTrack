@@ -81,7 +81,7 @@ const IndexPage: React.FC = () => {
                             <Box w="10px" h="10px" bg="#FFD700" display="inline-block" borderRadius="full" mr={2} />
                             happy
                         </Radio>
-                        <Radio value="sad">
+                        {/* <Radio value="sad">
                             <Box w="10px" h="10px" bg="#4682B4" display="inline-block" borderRadius="full" mr={2} />
                             sad
                         </Radio>
@@ -108,7 +108,7 @@ const IndexPage: React.FC = () => {
                         <Radio value="surprise">
                             <Box w="10px" h="10px" bg="#FF6347" display="inline-block" borderRadius="full" mr={2} />
                             surprise
-                        </Radio>
+                        </Radio> */}
                     </HStack>
                 </Stack>
             </RadioGroup>
