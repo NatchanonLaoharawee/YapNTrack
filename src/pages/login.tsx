@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
     Box,
@@ -10,8 +12,16 @@ import {
     Text,
     IconButton,
 } from "@chakra-ui/react";
+import { useState } from "react";
+import { useRouter } from 'next/router';
 
 export default function Home() {
+
+    const [userName, setUserName] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    
+    const router = useRouter();
+
     return (
         <Container maxW="xl" py={8} bg="#FFD6E0" minH="100vh" centerContent>
 
@@ -44,9 +54,10 @@ export default function Home() {
                             borderRadius: "25px",
                             fontWeight: "bold",
                             transition: "background-color 0.3s ease-in-out",
+                            hover: { backgroundColor: "#e6d3e6" },
                         }}
-                        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#e6d3e6")}
-                        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = item.bgColor)}
+                        // onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#e6d3e6")}
+                        // onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = item.bgColor)}
                     >
                         {item.text}
                     </a>
@@ -79,6 +90,8 @@ export default function Home() {
                             fontWeight="bold"
                             borderRadius="full"
                             _focus={{ outline: "none" }}
+                            value={userName}
+                            onChange={(e) => {setUserName(userName => e.target.value)}}
                         />
                         <Input
                             placeholder="PASSWORD"
@@ -90,6 +103,8 @@ export default function Home() {
                             fontWeight="bold"
                             borderRadius="full"
                             _focus={{ outline: "none" }}
+                            value={password}
+                            onChange={(e) => {setPassword(password => e.target.value)}}
                         />
                         <Button //non responsive 
                             bg="#FEE89E"
@@ -101,6 +116,10 @@ export default function Home() {
                             mt={4}
                             fontSize="14px"
                             _hover={{ bg: "#FDDD83" }}
+                            onClick={() => {router.push({
+                                pathname: "/routing/write",
+                                query: {userName}
+                            })}}
                         >
                             sign up
                         </Button>
