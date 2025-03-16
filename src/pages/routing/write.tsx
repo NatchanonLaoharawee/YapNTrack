@@ -122,34 +122,35 @@ const RoutingWrite: React.FC = () => {
                     justifyContent: "center",
                     gap: "10px",
                     flexWrap: "wrap",
-                    border: "3px solid black",
                     borderRadius: "20px",
                     width: "95%",
                     maxWidth: "600px",
                 }}
             >
                 {[
-                    { text: "WRITE", href: "/routing/write" },
-                    { text: "PAST ENTRIES", href: "/routing/past" },
-                    { text: "CALENDAR", href: "/routing/calendar" },
-                    { text: "LOGIN", href: "/" },
+                    { text: "WRITE", href: "/routing/write", bgColor: "#e6d3e6" },
+                    { text: "PAST ENTRIES", href: "/routing/past", bgColor: "#f48c8c" },
+                    { text: "CALENDAR", href: "/routing/calendar", bgColor: "#f48c8c" },
+                    { text: "LOGIN", href: "/", bgColor: "#f48c8c" },
                 ].map((item) => (
-                    <Button
-                        key={item.text}
-                        style={{
-                            padding: "10px 20px",
-                            backgroundColor: item.text === "WRITE" ? "#F48C8C" : "#E6D3E6",
-                            color: "black",
-                            border: "3px solid black",
-                            borderRadius: "25px",
-                            fontWeight: "bold",
-                            fontSize: "16px",
-                            textAlign: "center",
-                            minWidth: "120px",
-                        }}
-                    >
-                        {item.text}
-                    </Button>
+                    <Link href={item.href}>
+                        <Button
+                            key={item.text}
+                            style={{
+                                padding: "10px 20px",
+                                backgroundColor: item.bgColor,
+                                color: "black",
+                                border: "3px solid black",
+                                borderRadius: "25px",
+                                fontWeight: "bold",
+                                fontSize: "16px",
+                                textAlign: "center",
+                                minWidth: "120px",
+                            }}
+                        >
+                            {item.text}
+                        </Button>
+                    </Link>
                 ))}
             </nav>
 

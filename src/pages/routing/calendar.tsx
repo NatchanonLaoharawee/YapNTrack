@@ -7,11 +7,6 @@ import {
     Container,
     Heading,
     Table,
-    Thead,
-    Tbody,
-    Tr,
-    Th,
-    Td,
     VStack,
     HStack,
     IconButton,
@@ -67,7 +62,7 @@ const Calendar: React.FC = () => {
                 const dayColor = currentMonth === 2 && moodColors[dayCounter] ? moodColors[dayCounter] : "transparent"; // Apply colors only for March
 
                 daysArray.push(
-                    <Td key={i} textAlign="center" border="2px solid black" p={3}>
+                    <Table.Cell key={i} textAlign="center" border="2px solid black" p={3}>
                         <Center
                             w="35px"
                             h="35px"
@@ -78,18 +73,18 @@ const Calendar: React.FC = () => {
                         >
                             {dayCounter}
                         </Center>
-                    </Td>
+                    </Table.Cell>
                 );
                 dayCounter++;
             } else {
-                daysArray.push(<Td key={i} />);
+                daysArray.push(<Table.Cell key={i} />);
             }
         }
 
         // Divide into weeks (rows)
         const rows = [];
         for (let i = 0; i < daysArray.length; i += 7) {
-            rows.push(<Tr key={i}>{daysArray.slice(i, i + 7)}</Tr>);
+            rows.push(<Table.Row key={i}>{daysArray.slice(i, i + 7)}</Table.Row>);
         }
 
         return rows;
@@ -156,18 +151,18 @@ const Calendar: React.FC = () => {
 
                 {/* 🔹 Calendar Grid */}
                 <Box mt={4} border="3px solid black" borderRadius="20px" overflow="hidden" bg="#F48C8C" p={4}>
-                    <Table variant="unstyled">
-                        <Thead>
-                            <Tr>
+                    <Table.Root variant="unstyled">
+                        <Table.Header>
+                            <Table.Row>
                                 {daysOfWeek.map((day) => (
-                                    <Th key={day} textAlign="center" border="2px solid black" fontSize="16px" fontWeight="bold" bg="#F48C8C">
+                                    <Table.Cell key={day} textAlign="center" border="2px solid black" fontSize="16px" fontWeight="bold" bg="#F48C8C">
                                         {day}
-                                    </Th>
+                                    </Table.Cell>
                                 ))}
-                            </Tr>
-                        </Thead>
-                        <Tbody>{generateCalendar()}</Tbody>
-                    </Table>
+                            </Table.Row>
+                        </Table.Header>
+                        <Table.Body>{generateCalendar()}</Table.Body>
+                    </Table.Root>
                 </Box>
             </VStack>
         </Container>

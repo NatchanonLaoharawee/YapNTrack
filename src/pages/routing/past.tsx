@@ -42,64 +42,65 @@ const RoutingPastEntries: React.FC = () => {
     };
 
     return (
-        <Container maxW="3xl" py={8}>
-          <nav
-                style={{
-                    padding: "15px",
-                    backgroundColor: "#FFD6E0",
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: "10px",
-                    flexWrap: "wrap",
-                    border: "3px solid black",
-                    borderRadius: "20px",
-                    width: "95%",
-                    maxWidth: "600px",
-                }}
-            >
-                {[
-                    { text: "WRITE", href: "/routing/write", bgColor: "#f48c8c" },
-                    { text: "PAST ENTRIES", href: "/routing/past", bgColor: "#e6d3e6" },
-                    { text: "CALENDAR", href: "/routing/calendar", bgColor: "#f48c8c" },
-                    { text: "LOGIN", href: "/", bgColor: "#f48c8c" },
-                ].map((item) => (
-                    <Link href={item.href}>
-                        <Button
-                            key={item.text}
-                            style={{
-                                padding: "10px 20px",
-                                backgroundColor: item.bgColor,
-                                color: "black",
-                                border: "3px solid black",
-                                borderRadius: "25px",
-                                fontWeight: "bold",
-                                fontSize: "16px",
-                                textAlign: "center",
-                                minWidth: "120px",
-                            }}
+        <Container maxW="3xl" bg="#FFD6E0" py={8} minH="100vh">
+            <HStack align="stretch" style={{ gap: "20px" }}>
+                <nav
+                    style={{
+                        padding: "15px",
+                        backgroundColor: "#FFD6E0",
+                        display: "flex",
+                        justifyContent: "center",
+                        gap: "10px",
+                        flexWrap: "wrap",
+                        borderRadius: "20px",
+                        width: "95%",
+                        maxWidth: "600px",
+                    }}
+                >
+                    {[
+                        { text: "WRITE", href: "/routing/write", bgColor: "#f48c8c" },
+                        { text: "PAST ENTRIES", href: "/routing/past", bgColor: "#e6d3e6" },
+                        { text: "CALENDAR", href: "/routing/calendar", bgColor: "#f48c8c" },
+                        { text: "LOGIN", href: "/", bgColor: "#f48c8c" },
+                    ].map((item) => (
+                        <Link href={item.href}>
+                            <Button
+                                key={item.text}
+                                style={{
+                                    padding: "10px 20px",
+                                    backgroundColor: item.bgColor,
+                                    color: "black",
+                                    border: "3px solid black",
+                                    borderRadius: "25px",
+                                    fontWeight: "bold",
+                                    fontSize: "16px",
+                                    textAlign: "center",
+                                    minWidth: "120px",
+                                }}
 
-                            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#e75480")}
-                            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = item.bgColor)}
-                        >
-                            {item.text}
-                        </Button>
-                    </Link>
-                ))}
-            </nav>
+                                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#e75480")}
+                                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = item.bgColor)}
+                            >
+                                {item.text}
+                            </Button>
+                        </Link>
+                    ))}
+                </nav>
+            </HStack>
 
             {/* 🔹 Past Entries Section */}
-            <VStack spacing={6} align="stretch">
+            <VStack align="stretch" style={{ gap: "20px" }}> {/* ✅ Replaced `spacing` with `gap` */}
                 {/* 🔹 Heading */}
                 <Heading size="md">Past Entries</Heading>
 
                 {/* 🔹 Entries List (Left Sidebar) */}
-                <HStack align="start" spacing={6}>
-                    <VStack spacing={2} align="stretch" bg="pink.200" p={4} borderRadius="md">
+                <HStack align="start" style={{ gap: "20px" }}> {/* ✅ Using `gap` here */}
+                    <VStack align="stretch" bg="pink.200" p={4} borderRadius="md" style={{ gap: "10px" }}>
                         {entries.map((entry, index) => (
                             <Button
                                 key={index}
                                 w="100%"
-                                colorScheme={index % 4 === 0 ? "yellow" : index % 4 === 1 ? "green" : index % 4 === 2 ? "blue" : "red"}
+                                colorScheme={index % 4 == 0 ? "yellow" : index % 4 == 1 ? "green" : index % 4 == 2 ? "blue" : index % 4 == 3 ? "red" : index % 4 == 0}
                                 borderRadius="full"
                                 onClick={() => setCurrentPage(index)}
                             >
@@ -117,7 +118,6 @@ const RoutingPastEntries: React.FC = () => {
                         boxShadow="md"
                         w="100%"
                         minH="300px"
-
                     >
                         {/* 🔹 Entry Date Header */}
                         <Text fontSize="lg" fontWeight="bold" mb={4} textAlign="center" borderBottom="2px solid black" pb={2}>
@@ -132,7 +132,7 @@ const RoutingPastEntries: React.FC = () => {
                 </HStack>
 
                 {/* 🔹 Pagination Buttons */}
-                <HStack justify="center">
+                <HStack justify="center" style={{ gap: "15px" }}> {/* ✅ Applied `gap` */}
                     <IconButton
                         aria-label="Previous Entry"
                         icon={<ArrowLeftIcon />}
