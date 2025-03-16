@@ -145,8 +145,8 @@ const Calendar: React.FC = () => {
 
                 {/* 🔹 Navigation Buttons */}
                 <HStack>
-                    <IconButton aria-label="Previous Month" icon={<ArrowLeftIcon />} onClick={() => changeMonth("prev")} />
-                    <IconButton aria-label="Next Month" icon={<ArrowRightIcon />} onClick={() => changeMonth("next")} />
+                    <IconButton aria-label="Previous Month" onClick={() => changeMonth("prev")}><ArrowLeftIcon /></IconButton>
+                    <IconButton aria-label="Next Month" onClick={() => changeMonth("next")}><ArrowRightIcon /></IconButton>
                 </HStack>
 
                 {/* 🔹 Calendar Grid */}

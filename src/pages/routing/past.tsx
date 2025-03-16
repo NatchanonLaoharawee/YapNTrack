@@ -136,16 +136,16 @@ const RoutingPastEntries: React.FC = () => {
                     <IconButton
                         aria-label="Previous Entry"
                         onClick={() => handlePageChange("prev")}
-                        isDisabled={currentPage === 0}
+                        // isDisabled={currentPage === 0}
                     >
-                        <ArrowLeftIcon />
+                        <ArrowLeftIcon isDisabled={currentPage === 0} />
                     </IconButton>
                     <IconButton
                         aria-label="Next Entry"
                         onClick={() => handlePageChange("next")}
-                        isDisabled={currentPage === entries.length - 1}
+                        // isDisabled={currentPage === entries.length - 1}
                     >
-                        <ArrowRightIcon />
+                        <ArrowRightIcon isDisabled={currentPage === entries.length - 1}/>
                     </IconButton>
                 </HStack>
             </VStack>
