@@ -42,7 +42,7 @@ const RoutingPastEntries: React.FC = () => {
     };
 
     return (
-        <Container maxW="xl" py={8}>
+        <Container maxW="2xl" py={8}>
           <nav
                 style={{
                     padding: "15px",
