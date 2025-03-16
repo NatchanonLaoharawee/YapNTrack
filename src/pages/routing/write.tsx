@@ -9,17 +9,17 @@
 //     const router = useRouter();
 //     const { userName } = router.query;
 
-    
+
 //     const [currentPage, setCurrentPage] = useState(1);
 //     // const [pages, setPages] = useState([""]);
 //     // const maxCharsPerPage = 390; // Example character limit per page
-    
+
 //     const handlePrevious = () => {
 //         if (currentPage > 1) {
 //             setCurrentPage(currentPage => currentPage - 1);
 //         }
 //     };
-    
+
 //     const handleNext = () => {
 //         setCurrentPage(currentPage => currentPage + 1);
 //     };
@@ -73,7 +73,7 @@
 
 // // export async function getServerSideProps(context: any) {
 // //     const { userName } = context.query;
-  
+
 // //     return {
 // //       props: userName, // will be passed to the page component as props
 // //     }
@@ -129,32 +129,27 @@ const RoutingWrite: React.FC = () => {
                 }}
             >
                 {[
-                    { text: "WRITE", href: "/routing/write", bgColor: "#e6d3e6" },
-                    { text: "PAST ENTRIES", href: "/routing/past", bgColor: "#f48c8c" },
-                    { text: "CALENDAR", href: "/routing/calendar", bgColor: "#f48c8c" },
-                    { text: "LOGIN", href: "/", bgColor: "#f48c8c" },
+                    { text: "WRITE", href: "/routing/write" },
+                    { text: "PAST ENTRIES", href: "/routing/past" },
+                    { text: "CALENDAR", href: "/routing/calendar" },
+                    { text: "LOGIN", href: "/" },
                 ].map((item) => (
-                    <Link href={item.href}>
-                        <Button
-                            key={item.text}
-                            style={{
-                                padding: "10px 20px",
-                                backgroundColor: item.bgColor,
-                                color: "black",
-                                border: "3px solid black",
-                                borderRadius: "25px",
-                                fontWeight: "bold",
-                                fontSize: "16px",
-                                textAlign: "center",
-                                minWidth: "120px",
-                            }}
-
-                            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#e75480")}
-                            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = item.bgColor)}
-                        >
-                            {item.text}
-                        </Button>
-                    </Link>
+                    <Button
+                        key={item.text}
+                        style={{
+                            padding: "10px 20px",
+                            backgroundColor: item.text === "WRITE" ? "#F48C8C" : "#E6D3E6",
+                            color: "black",
+                            border: "3px solid black",
+                            borderRadius: "25px",
+                            fontWeight: "bold",
+                            fontSize: "16px",
+                            textAlign: "center",
+                            minWidth: "120px",
+                        }}
+                    >
+                        {item.text}
+                    </Button>
                 ))}
             </nav>
 

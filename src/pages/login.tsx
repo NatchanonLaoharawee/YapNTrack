@@ -19,7 +19,7 @@ export default function Home() {
 
     const [userName, setUserName] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    
+
     const router = useRouter();
 
     return (
@@ -54,10 +54,11 @@ export default function Home() {
                             borderRadius: "25px",
                             fontWeight: "bold",
                             transition: "background-color 0.3s ease-in-out",
-                            hover: { backgroundColor: "#e6d3e6" },
+                            // hover: { backgroundColor: "#e6d3e6" },
+
                         }}
-                        // onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#e6d3e6")}
-                        // onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = item.bgColor)}
+                        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#e6d3e6")}
+                        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = item.bgColor)}
                     >
                         {item.text}
                     </a>
@@ -91,7 +92,7 @@ export default function Home() {
                             borderRadius="full"
                             _focus={{ outline: "none" }}
                             value={userName}
-                            onChange={(e) => {setUserName(userName => e.target.value)}}
+                            onChange={(e) => { setUserName(userName => e.target.value) }}
                         />
                         <Input
                             placeholder="PASSWORD"
@@ -104,7 +105,7 @@ export default function Home() {
                             borderRadius="full"
                             _focus={{ outline: "none" }}
                             value={password}
-                            onChange={(e) => {setPassword(password => e.target.value)}}
+                            onChange={(e) => { setPassword(password => e.target.value) }}
                         />
                         <Button //non responsive 
                             bg="#FEE89E"
@@ -116,10 +117,12 @@ export default function Home() {
                             mt={4}
                             fontSize="14px"
                             _hover={{ bg: "#FDDD83" }}
-                            onClick={() => {router.push({
-                                pathname: "/routing/write",
-                                query: {userName}
-                            })}}
+                            onClick={() => {
+                                router.push({
+                                    pathname: "/routing/write",
+                                    query: { userName }
+                                })
+                            }}
                         >
                             sign up
                         </Button>
