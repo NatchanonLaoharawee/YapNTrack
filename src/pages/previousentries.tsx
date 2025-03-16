@@ -4,7 +4,7 @@ import {
     Button,
     Container,
     Heading,
-    VStack
+    VStack,
     HStack,
     Text,
     IconButton,
@@ -40,13 +40,13 @@ const PastEntries: React.FC = () => {
 
     return (
         <Container maxW="xl" py={8}>
-            <VStack spacing={6} align="stretch">
+            <VStack align="stretch" style={{ gap: "20px" }}> {/* ✅ Replaced `spacing` with `gap` */}
                 {/* 🔹 Heading */}
                 <Heading size="md">Past Entries</Heading>
 
                 {/* 🔹 Entries List (Left Sidebar) */}
-                <HStack align="start" spacing={6}>
-                    <VStack spacing={2} align="stretch" bg="pink.200" p={4} borderRadius="md">
+                <HStack align="start" style={{ gap: "20px" }}> {/* ✅ Using `gap` here */}
+                    <VStack align="stretch" bg="pink.200" p={4} borderRadius="md" style={{ gap: "10px" }}>
                         {entries.map((entry, index) => (
                             <Button
                                 key={index}
@@ -69,7 +69,6 @@ const PastEntries: React.FC = () => {
                         boxShadow="md"
                         w="100%"
                         minH="300px"
-
                     >
                         {/* 🔹 Entry Date Header */}
                         <Text fontSize="lg" fontWeight="bold" mb={4} textAlign="center" borderBottom="2px solid black" pb={2}>
@@ -84,7 +83,7 @@ const PastEntries: React.FC = () => {
                 </HStack>
 
                 {/* 🔹 Pagination Buttons */}
-                <HStack justify="center">
+                <HStack justify="center" style={{ gap: "15px" }}> {/* ✅ Applied `gap` */}
                     <IconButton
                         aria-label="Previous Entry"
                         icon={<ArrowLeftIcon />}
