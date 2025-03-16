@@ -11,20 +11,14 @@ const IndexPage: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(0); // Current page index
 
     const handlePageChange = (direction: "prev" | "next") => {
-        setPages((prevPages) => {
-            let updatedPages = [...prevPages];
-
-            if (direction === "next") {
-                if (currentPage === prevPages.length - 1) {
-                    updatedPages.push(""); // Add new blank page only when on the last page
-                }
-                setCurrentPage((prev) => prev + 1);
-            } else if (direction === "prev" && currentPage > 0) {
-                setCurrentPage((prev) => prev - 1);
+        if (direction === "next") {
+            if (currentPage === pages.length - 1) {
+                setPages([...pages, ""]); // Add a new blank page
             }
-
-            return updatedPages;
-        });
+            setCurrentPage(currentPage + 1); // Move forward
+        } else if (direction === "prev" && currentPage > 0) {
+            setCurrentPage(currentPage - 1); // Move back
+        }
     };
 
     return (
@@ -87,7 +81,7 @@ const IndexPage: React.FC = () => {
                 fontSize="14px"
                 _hover={{ bg: "#A4C77F" }}
             >
-                Mood Calculator
+                mood calculator
             </Button>
 
             {/* 🔹 Editable Notepad */}
@@ -105,15 +99,24 @@ const IndexPage: React.FC = () => {
                 flexDirection="column"
                 overflow="hidden"
             >
+                {/* Notepad Lines */}
+                <Box
+                    position="absolute"
+                    top={0}
+                    left={0}
+                    width="100%"
+                    height="100%"
+                    pointerEvents="none"
+
+                />
+
                 {/* Editable Textarea */}
                 <Textarea
                     value={pages[currentPage]} // Current page content
                     onChange={(e) => {
-                        setPages((prevPages) => {
-                            const newPages = [...prevPages];
-                            newPages[currentPage] = e.target.value; // Update specific page
-                            return newPages;
-                        });
+                        const newPages = [...pages];
+                        newPages[currentPage] = e.target.value; // Update specific page
+                        setPages(newPages);
                     }}
                     placeholder="Write your journal entry here..."
                     fontSize="18px"
@@ -121,16 +124,15 @@ const IndexPage: React.FC = () => {
                     background="transparent"
                     height="100%"
                     resize="none"
-                    borderColor="transparent"
-                    lineHeight="40px"
+                    lineHeight="40px" /* Aligns text with lines */
                     padding="10px"
                     position="relative"
-                    zIndex="1"
+                    zIndex="1" /* Ensures text is above lines */
                 />
             </Box>
 
             {/* 🔹 Navigation Arrows */}
-            <HStack mt={6} >
+            <HStack mt={6} style={{ gap: "20px" }}>
                 {/* Left Button */}
                 <Button
                     w="50px"
@@ -151,7 +153,7 @@ const IndexPage: React.FC = () => {
                         h="0"
                         borderTop="15px solid transparent"
                         borderBottom="15px solid transparent"
-                        borderRight="20px solid black"
+                        borderRight="20px solid black" /* Triangle pointing left */
                     />
                 </Button>
 
@@ -174,7 +176,7 @@ const IndexPage: React.FC = () => {
                         h="0"
                         borderTop="15px solid transparent"
                         borderBottom="15px solid transparent"
-                        borderLeft="20px solid black"
+                        borderLeft="20px solid black" /* Triangle pointing right */
                     />
                 </Button>
             </HStack>
