@@ -19,19 +19,44 @@ const RoutingPastEntries: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(0);
 
     // Simulate fetching past entries (replace with API call)
-    useEffect(() => {
-        const fetchEntries = async () => {
-            // Simulated past entries
-            const fakeEntries = [
-                { date: "14/03/2025", content: "Entry 1 content..." },
-                { date: "13/03/2025", content: "Entry 2 content..." },
-                { date: "12/03/2025", content: "Entry 3 content..." },
-            ];
-            setEntries(fakeEntries);
-        };
+    // useEffect(() => {
+    //     const fetchEntries = async () => {
+    //         // Simulated past entries
+    //         const fakeEntries = [
+    //             { date: "14/03/2025", content: "Entry 1 content..." },
+    //             { date: "13/03/2025", content: "Entry 2 content..." },
+    //             { date: "12/03/2025", content: "Entry 3 content..." },
+    //         ];
+    //         setEntries(fakeEntries);
+    //     };
 
-        fetchEntries();
-    }, []);
+    //     fetchEntries();
+    // }, []);
+
+    // useEffect(() => {
+    //     const fetchEntries = async () => {
+    //         try {
+    //             const response = await fetch("https://your-backend.com/fetch_entries.php", {
+    //                 method: "GET",
+    //                 headers: {
+    //                     "Content-Type": "application/json",
+    //                 },
+    //             });
+
+    //             if (!response.ok) {
+    //                 throw new Error(`HTTP error! Status: ${response.status}`);
+    //             }
+
+    //             const data = await response.json();
+    //             setEntries(data); // Assuming the response is an array of entries
+    //         } catch (error) {
+    //             console.error("Error fetching entries:", error);
+    //         }
+    //     };
+
+    //     fetchEntries();
+    // }, []);
+
 
     const handlePageChange = (direction: "prev" | "next") => {
         if (direction === "next" && currentPage < entries.length - 1) {
